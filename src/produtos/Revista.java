@@ -7,7 +7,13 @@ public class Revista extends DescritorProduto {
 	public void imprimir(){
 		//imprimir todas as coisas
 	}
-	public Revista(){
+	public Revista(String nome,int cod,int preco,String editora,int mes,int ano){
+		this.nome=nome;
+		this.codigo=cod;
+		this.preco=preco;
+		this.editora=editora;
+		this.mes=mes;
+		this.ano=ano;
 		
 	}
 }

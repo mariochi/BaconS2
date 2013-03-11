@@ -9,7 +9,7 @@ public class Livro extends DescritorProduto {
 		//imprimir todas as coisas
 	}
 	
-	public Livro(int codigo,int preco,int ano,String nome,String editora,String autor){
+	public Livro(String editora,int preco,int ano,String nome,int codigo,String autor){
 		this.codigo = codigo;
 		this.preco = preco;
 		this.ano = ano;

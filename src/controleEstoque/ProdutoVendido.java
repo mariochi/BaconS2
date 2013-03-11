@@ -7,13 +7,18 @@ public class ProdutoVendido {
 	private int quantidade;
 	
 	public int fecha_conta(){
-		return 0;
+		return this.p.getPreco()*this.quantidade;
 	}
 	public void elimina(){
+		this.p.baixaEstoque(this.quantidade);
 		
 	}
 	public int codigo(){
-		return 0; }
+		return p.getCodigo();
+	}
+	public int getQtde(){
+		return this.quantidade;
+	}
 	public ProdutoVendido(DescritorProduto d, int qtde){
 		boolean teste;
 		this.p = d;
