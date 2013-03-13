@@ -2,6 +2,8 @@ package controleEstoque;
 
 import java.util.List;
 
+import controladores.Globais;
+
 import central.Starter;
 
 public class Relatorio {
@@ -85,7 +87,7 @@ public class Relatorio {
 			}
 		}
 		for(int i = 0; i<=4;i++){
-			Starter.livraria.descritor(listaTopGeral.get(i).getCod()).imprimir();
+			Globais.livraria.descritor(listaTopGeral.get(i).getCod()).imprimir();
 		}
 		
 	}

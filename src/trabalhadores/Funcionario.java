@@ -2,6 +2,7 @@ package trabalhadores;
 
 import produtos.DescritorProduto;
 import central.Starter;
+import controladores.Globais;
 import controladores.Livraria;
 import controleEstoque.Venda;
 
@@ -14,7 +15,7 @@ public class Funcionario {
 	{
 		Livraria l;
 		DescritorProduto p;
-		l = Starter.livraria;
+		l = Globais.livraria;
 		p = l.descritor(cod);
 		if(p==null){
 			//mensagem de erro
@@ -25,21 +26,21 @@ public class Funcionario {
 		}
 	}
 	public void finaliza_venda(){
-		if(!Starter.livraria.existeRelatorio(Starter.semana)){
-			Starter.livraria.novo_relatorio();
+		if(!Globais.livraria.existeRelatorio(Globais.semana)){
+			Globais.livraria.novo_relatorio();
 		}
 		this.v.fecha_conta();
 	}
 	public void alta_estoque(int cod,int qtde){
-		Starter.livraria.alta(cod, qtde);
+		Globais.livraria.alta(cod, qtde);
 	}
 	public void relatorio_semanal(long semana){
-		Starter.livraria.apresentaRelatorio(semana);
+		Globais.livraria.apresentaRelatorio(semana);
 	}
 	public void confirmar_impressao(boolean conf){}
 	public void confirmar_pagamento(){
 		this.v.pagamento_validado();
-		Starter.livraria.addRelatorio(v);
+		Globais.livraria.addRelatorio(v);
 	}
 	public boolean verifica_senha(String senha){
 		return false;
@@ -50,7 +51,11 @@ public class Funcionario {
 	public String getNome(){
 		return this.nome;
 	}
-	public Funcionario(){}
+	public Funcionario(String nome,String login,String senha){
+		this.nome = nome;
+		this.login = login;
+		this.senha = senha;
+	}
 	public String getSenha() {
 		return this.senha;
 	}

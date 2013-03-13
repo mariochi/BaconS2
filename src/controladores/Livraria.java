@@ -11,6 +11,7 @@ import produtos.Revista;
 import controleEstoque.Relatorio;
 import controleEstoque.Venda;
 
+import trabalhadores.Administrador;
 import trabalhadores.Funcionario;
 
 public class Livraria {
@@ -19,7 +20,7 @@ public class Livraria {
 	private List<DescritorProduto> listaDeProdutos;
 	
 	public void novo_relatorio(){
-		Relatorio r = new Relatorio(Starter.semana);
+		Relatorio r = new Relatorio(Globais.semana);
 	}
 	public boolean existeRelatorio(long semana){
 		for(Relatorio r:this.listaDeRelatorios)
@@ -112,6 +113,12 @@ public class Livraria {
 		return false;
 	}
 	
-	public Livraria(){}
+	public Livraria(){
+		this.listaDeFuncionarios = null;
+		Funcionario func = new Funcionario("Usuario","user","senha");
+		Administrador adm = new Administrador("Administrador","admin","admin");
+		this.listaDeFuncionarios.add(func);
+		this.listaDeFuncionarios.add(adm);
+	}
 
 }
