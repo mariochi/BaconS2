@@ -3,8 +3,12 @@ package controladores;
 import central.Starter;
 
 public class Logger {
-	public boolean efetua_login(String nome,String senha){
-		return Globais.livraria.entra_login(nome, senha);
+	public boolean efetua_login(String nome,String senha, Livraria livraria)
+	{
+		return livraria.entra_login(nome, senha);
 	}
-	public Logger(){}
+	public Logger()
+	{
+		
+	}
 }

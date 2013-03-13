@@ -1,6 +1,19 @@
 package controladores;
 
 public class Globais {
-	public static Livraria livraria = new Livraria();
-	public static long semana = 1;
+	
+	private Livraria livraria;
+
+	public Globais(){
+		setLivraria(new Livraria());
+		
+	}
+
+	public Livraria getLivraria() {
+		return livraria;
+	}
+
+	public void setLivraria(Livraria livraria) {
+		this.livraria = livraria;
+	}
 }

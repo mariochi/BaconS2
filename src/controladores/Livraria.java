@@ -1,5 +1,6 @@
 package controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import central.Starter;
@@ -20,7 +21,7 @@ public class Livraria {
 	private List<DescritorProduto> listaDeProdutos;
 	
 	public void novo_relatorio(){
-		Relatorio r = new Relatorio(Globais.semana);
+		Relatorio r = new Relatorio(Starter.semana);
 	}
 	public boolean existeRelatorio(long semana){
 		for(Relatorio r:this.listaDeRelatorios)
@@ -55,7 +56,7 @@ public class Livraria {
 	public void apresentaRelatorio(long semana){
 		for(Relatorio r:this.listaDeRelatorios){
 			if(r.getSemana()==semana){
-				r.apresentar();
+				r.apresentar(this);
 			}
 		}
 	}
@@ -70,8 +71,8 @@ public class Livraria {
 		
 	}
 	public void novo_caderno(int cod,int preco){
-		DescritorProduto c = new DescritorProduto(cod,preco);
-		this.listaDeProdutos.add(c);
+		
+		this.listaDeProdutos.add(new DescritorProduto(cod,preco));
 		
 	}
 	public void remover(int cod){
@@ -95,30 +96,46 @@ public class Livraria {
 		}
 		
 	}
-	public void busca_num(int num){
+	public DescritorProduto busca_num(int num){
 		for(DescritorProduto p : this.listaDeProdutos){
 			if(p.getCodigo()==num){
 				p.imprimir();
 				//break;
+				return p;
 			}
 		}
+		return null;
 	}
-	public boolean entra_login(String nome, String senha){
+	public boolean entra_login(String login, String senha){
 		for(Funcionario f:this.listaDeFuncionarios){
-			if(f.getNome().equals(nome)){
+			if(f.getLogin().equals(login))
+			{
 				if(f.getSenha().equals(senha))
+				{
 					return true;
+				}
 			}
 		}
 		return false;
 	}
+	public Funcionario logar(String login){
+		
+		for(Funcionario f:this.listaDeFuncionarios)
+		{
+			if(f.getLogin().equals(login))
+				return f;
+		}
+		return null;
+	}
 	
 	public Livraria(){
-		this.listaDeFuncionarios = null;
+		this.listaDeFuncionarios = new ArrayList();
 		Funcionario func = new Funcionario("Usuario","user","senha");
 		Administrador adm = new Administrador("Administrador","admin","admin");
 		this.listaDeFuncionarios.add(func);
 		this.listaDeFuncionarios.add(adm);
+		this.listaDeProdutos = new ArrayList();
+		this.listaDeRelatorios = new ArrayList();
 	}
 
 }

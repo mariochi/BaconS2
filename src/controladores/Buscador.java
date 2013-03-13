@@ -1,17 +1,14 @@
 package controladores;
 
+import produtos.DescritorProduto;
 import central.Starter;
 
 public class Buscador {
-	public void dados_busca(String nome){
-		Livraria l;
-		l = Globais.livraria;
+	public static void dados_busca(String nome, Livraria l){
 		l.busca_nome(nome);
 	}
-	public void dados_busca(int num){
-		Livraria l;
-		l = Globais.livraria;
-		l.busca_num(num);
+	public static DescritorProduto dados_busca(int num, Livraria l){
+		return l.busca_num(num);
 	}
 	public Buscador(){}
 }

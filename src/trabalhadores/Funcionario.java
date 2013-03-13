@@ -11,11 +11,11 @@ public class Funcionario {
 	protected String login;
 	protected String senha;
 	protected Venda v;
-	public void insere_produto(int cod,int qtde)
+	public void insere_produto(int cod,int qtde,Livraria livraria)
 	{
 		Livraria l;
 		DescritorProduto p;
-		l = Globais.livraria;
+		l = livraria;
 		p = l.descritor(cod);
 		if(p==null){
 			//mensagem de erro
@@ -25,28 +25,38 @@ public class Funcionario {
 			this.v.addItem(p,qtde);
 		}
 	}
-	public void finaliza_venda(){
-		if(!Globais.livraria.existeRelatorio(Globais.semana)){
-			Globais.livraria.novo_relatorio();
+	public void finaliza_venda(Livraria livraria){
+		if(!livraria.existeRelatorio(Starter.semana)){
+			livraria.novo_relatorio();
 		}
 		this.v.fecha_conta();
 	}
-	public void alta_estoque(int cod,int qtde){
-		Globais.livraria.alta(cod, qtde);
+	public void alta_estoque(int cod,int qtde, Livraria livraria){
+		livraria.alta(cod, qtde);
 	}
-	public void relatorio_semanal(long semana){
-		Globais.livraria.apresentaRelatorio(semana);
+	public void relatorio_semanal(long semana, Livraria livraria){
+		livraria.apresentaRelatorio(semana);
 	}
-	public void confirmar_impressao(boolean conf){}
-	public void confirmar_pagamento(){
+	public void confirmar_impressao(boolean conf,Livraria livraria){
+		if(conf)
+			livraria.apresentaRelatorio(Starter.semana);
+		
+	}
+	public void confirmar_pagamento(Livraria livraria){
 		this.v.pagamento_validado();
-		Globais.livraria.addRelatorio(v);
+		livraria.addRelatorio(v);
 	}
 	public boolean verifica_senha(String senha){
+		if(this.senha == senha){
+			return true;
+		}
 		return false;
 	}
 	public void inicia_venda(){
 		this.v = new Venda();
+	}
+	public Venda pegaVenda(){
+		return this.v;
 	}
 	public String getNome(){
 		return this.nome;
@@ -59,5 +69,21 @@ public class Funcionario {
 	public String getSenha() {
 		return this.senha;
 	}
+	public String getLogin() {
+		// TODO Auto-generated method stub
+		return this.login;
+	}
+	public void criar_livro(String nome,int cod,int preco,String autor,int ano,String editora,Livraria livraria){
+
+	}
+	public void criar_revista(String nome,int cod,int preco,String editora,int mes,int ano, Livraria livraria){
+		
+	}
+	public void criar_caderno(int codigo,int preco, Livraria livraria){
+		
+	}
+	public void remover_produto(int cod, Livraria livraria){
+	}
+
 	
 }

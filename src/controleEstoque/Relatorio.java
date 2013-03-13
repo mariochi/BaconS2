@@ -3,6 +3,7 @@ package controleEstoque;
 import java.util.List;
 
 import controladores.Globais;
+import controladores.Livraria;
 
 import central.Starter;
 
@@ -35,7 +36,7 @@ public class Relatorio {
 	public void setSemana(){
 		
 	}
-	public void apresentar(){
+	public void apresentar(Livraria livraria){
 		int acumulado = 0;
 		int max;
 		List<TopVendidos> listaTop = null;
@@ -87,11 +88,14 @@ public class Relatorio {
 			}
 		}
 		for(int i = 0; i<=4;i++){
-			Globais.livraria.descritor(listaTopGeral.get(i).getCod()).imprimir();
+			livraria.descritor(listaTopGeral.get(i).getCod()).imprimir();
 		}
 		
 	}
-	public void imprimir(){}
+	public void imprimir(){
+		System.out.println(this.toString());
+		
+	}
 
 	public Relatorio(long semana){
 		this.semana = semana;

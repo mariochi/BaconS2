@@ -18,11 +18,14 @@ public class Venda {
 			acumulado += p.fecha_conta();
 			//imprimir preço por item
 		}
-		//imprimir preço total
+		System.out.println(acumulado);
 	}
 	public void addItem(DescritorProduto d,int qtde){
 		ProdutoVendido p;
 		p = new ProdutoVendido(d,qtde);
+		if(p.getQtde()>0){
+			produtosVendidos.add(p);
+		}
 	}
 	public List<Integer> vendidos(){
 		List<Integer> aux = null;

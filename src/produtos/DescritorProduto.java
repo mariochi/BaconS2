@@ -1,5 +1,6 @@
 package produtos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DescritorProduto {
@@ -30,6 +31,10 @@ public class DescritorProduto {
 	}
 	public void imprimir(){
 		//impressão cód e preço
+
+		System.out.print(this.codigo);
+		System.out.print("  ");
+		System.out.println(this.preco);
 	}
 	
 	public DescritorProduto(){
@@ -38,7 +43,7 @@ public class DescritorProduto {
 	public DescritorProduto(int cod, int preco){
 		this.codigo = cod;
 		this.preco = preco;
-		this.nome = "";
+		this.listaDeitem = new ArrayList();
 		
 	}
 	public int getCodigo() {
